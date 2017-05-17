@@ -109,11 +109,16 @@ header {
     padding: 3px;
     border-radius: 5px;
     margin: 3px 3px 12px 3px;
-    span { float:right; }
+    span { float: right; }
   }
   li.done {
     a { color: red; }
     text-decoration: line-through;
+  }
+  div.done-btn {
+    float: left;
+    width: 50px;
+    min-height: 1px;
   }
   a#clearer { float: right; }
   h1 {
