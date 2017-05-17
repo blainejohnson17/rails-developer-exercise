@@ -1,11 +1,12 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, :except => [:index, :new, :create]
+  before_action :set_project, :except => [:index, :new, :create, :show]
 
   def index
     @projects = Project.all
   end
 
   def show
+    @project = Project.includes(:items).find(params[:id])
   end
 
   def new
