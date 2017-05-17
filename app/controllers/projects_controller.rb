@@ -48,10 +48,14 @@ class ProjectsController < ApplicationController
   end
 
   def clear
-    @project.items.complete.destroy_all
+    notice = if @project.items.complete.destroy_all.empty?
+               'There are no completed items for this project.'
+             else
+               'Completed items were successfully cleared.'
+             end
     respond_to do |format|
       format.html { redirect_to project_path(@project),
-                    :notice => 'Completed items were successfully cleared.' }
+                    :notice => notice }
     end
   end
 
