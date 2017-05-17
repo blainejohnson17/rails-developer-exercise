@@ -19,5 +19,7 @@
 </ul>
 
 <%= link_to 'New Item', new_project_item_path(project) %>
-<%= link_to 'Clear Completed Items', clear_project_path(project),
-      :method => :delete, :id => "clearer" %>
+<% unless @project.items.empty? %>
+  <%= link_to 'Clear Completed Items', clear_project_path(project),
+        :method => :delete, :id => "clearer" %>
+<% end %>
