@@ -30,4 +30,8 @@ RSpec.describe Project, :type => :model do
       expect(duplicate_project.errors.keys).to include :title
     end
   end
+
+  describe "soft delete" do
+    it_behaves_like 'a Paranoid model'
+  end
 end

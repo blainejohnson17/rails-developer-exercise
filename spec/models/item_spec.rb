@@ -30,4 +30,8 @@ RSpec.describe Item, :type => :model do
       expect(duplicate_action.errors.keys).to include :action
     end
   end
+
+  describe "soft delete" do
+    it_behaves_like 'a Paranoid model'
+  end
 end
