@@ -10,4 +10,11 @@ shared_examples_for 'a Paranoid model' do
   it 'skips adding the deleted_at where clause when unscoped' do
     expect(described_class.unscoped.where_sql.to_s).not_to include('deleted_at')  # to_s to handle nil.
   end
+
+  it 'does not destroy object' do
+    subject.save!
+    expect {
+      subject.destroy
+    }.to_not change { described_class.unscoped.count }
+  end
 end

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ProjectsController, :type => :controller do
+RSpec.describe ProjectsController do
   let(:valid_attributes) { { "title" => "MyString" } }
   let(:valid_session) { {} }
 

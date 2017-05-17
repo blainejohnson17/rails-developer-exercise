@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'user creates project with item', :type => :feature do
+RSpec.describe 'user creates project with item' do
   it "creates project with item" do
     visit '/'
     click_on 'New Project'
