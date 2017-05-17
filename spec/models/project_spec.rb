@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Project, :type => :model do
+RSpec.describe Project do
   subject { Project.new(params) }
 
   let(:params) {
@@ -14,21 +14,9 @@ RSpec.describe Project, :type => :model do
       expect(subject).to be_valid
     end
 
-    it "requires a title" do
-      params[:title] = ''
+    it { should validate_presence_of(:title) }
 
-      expect(subject).to_not be_valid
-      expect(subject.errors.keys).to eq [:title]
-    end
-
-    it "requires unique project title" do
-      subject.save
-
-      duplicate_project = Project.new(params)
-
-      expect(duplicate_project).to_not be_valid
-      expect(duplicate_project.errors.keys).to include :title
-    end
+    it { should validate_uniqueness_of(:title) }
   end
 
   describe "soft delete" do

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Item, :type => :model do
+RSpec.describe Item do
   subject { Item.new(params) }
 
   let(:params) {
@@ -15,19 +15,12 @@ RSpec.describe Item, :type => :model do
       expect(subject).to be_valid
     end
 
-    it "requires an action" do
-      params[:action] = ''
+    it { should validate_presence_of(:action) }
 
-      expect(subject).to_not be_valid
-    end
-
-    it "requires action be unique within a project" do
-      subject.save
-
-      duplicate_action = Item.new(params)
-
-      expect(duplicate_action).to_not be_valid
-      expect(duplicate_action.errors.keys).to include :action
+    it do
+      should validate_uniqueness_of(:action).
+        scoped_to(:project_id).
+        with_message('should be unique within a project')
     end
   end
 
